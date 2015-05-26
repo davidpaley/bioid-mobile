@@ -13,6 +13,21 @@ var paths = {
 
 gulp.task('default', ['sass']);
 
+// Import at the top of the file
+var karma = require('karma').server;
+
+/**
+* Test task, run test once and exit
+*/
+gulp.task('test', function(done) {
+    karma.start({
+        configFile: __dirname + '/tests/my.conf.js',
+        singleRun: true
+    }, function() {
+        done();
+    });
+});
+
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass({

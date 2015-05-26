@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('bioid-mobile.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
