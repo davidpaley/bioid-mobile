@@ -1,1 +1,46 @@
-/* Empty. Add your own CSS if you like */
+.green {
+/*	background: #b9f6ca;*/
+	background-image:url("/img/entrance.png");
+	background-size: 100%;
+	color: #777; 
+}
+
+.red {
+	background: #ff8a80;
+	color: #777; 
+}
+.red-lunch {
+	background: #ff8a80;
+	background-image:url("/img/lunch-exit.jpg");
+	background-size: 100%;
+	color: #777; 
+}
+.icon-sm{
+	height:64px; 
+	width:64px;
+	font-size:64px; 
+}
+.icon{
+	height:128px; 
+	width:128px;
+	font-size:128px;
+}
+.blue  {
+	background-image:url("/img/lunch.jpg");
+	background-size: 100%;
+/*	background: #84ffff; */
+	color: #777;
+}
+
+md-grid-tile.md-whiteframe-z4:active {
+	top: 2px!important;
+}
+
+.tile-title{
+	color:white;
+	font-size: 25px;
+}
+
+md-grid-list md-grid-tile md-grid-tile-footer{
+	background: rgba(0, 0, 0, 0.68);
+}
