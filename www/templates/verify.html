@@ -1,0 +1,24 @@
+<ion-view view-title="Verificar"  >
+<ion-nav-bar class="bar-dark">
+    <ion-nav-back-button></ion-nav-back-button>
+ </ion-nav-bar>
+  <ion-content>
+  
+<md-grid-list
+        md-cols-sm="4" md-cols-md="5" md-cols-gt-md="6"
+        md-row-height-gt-md="1:1" md-row-height="2:2"
+        md-gutter="12px"  md-gutter-gt-sm="8px">
+        <md-grid-tile ng-repeat="tile in tiles"
+                      ng-animate="'animate'"
+                      md-rowspan="{{tile.row}}"
+                      md-colspan="{{tile.col}}"
+                      ng-class="tile.color"
+                      class="md-whiteframe-z4"
+                      ng-click="verify(tile.markId,$event)"> 
+          <md-icon class="{{tile.size}} {{tile.img}}" alt="Entrada"></md-icon>
+          <md-grid-tile-footer><h3 class="tile-title">{{tile.title}}</h3></md-grid-tile-footer>
+        </md-grid-tile>          
+    
+</md-grid-list>
+    </ion-content>
+</ion-view>
