@@ -53,3 +53,6 @@ md-grid-list md-grid-tile md-grid-tile-footer{
 nav-bar-positive, .bar-light {
   background-color: #89AACB  !important;
 }
+input[type="number"],input[type="date"]{
+	border-style: solid;
+}
