@@ -1,33 +1,34 @@
-///// <reference path="../../typings/jasmine/jasmine.d.ts"/>
-//
-//describe('Controllers', function () {
-//    var scope;
-//
-//    // load the controller's module
-//    beforeEach(module('bioid-mobile.controllers'));
-//
-//    beforeEach(inject(function ($rootScope, $controller) {
-//        scope = $rootScope.$new();
-//        $controller('AccountCtrl', { $scope: scope });
-//    }));
-//
-//    // LOGIN
-//    it('should log the user successfully', function () {
-//        $controller('AccountCtrl', { $scope: scope });
-//        $('AccountCtrl', { $scope: scope });
-//        expect(scope.settings.enableFriends).toEqual(true);
-//    });
-//
-//    it('should show the user login if the user is not logged in', function () {
-//        expect(scope.settings.enableFriends).toEqual(true);
-//    });
-//
-//    it('should show the verify screen if the user is logged in', function () {
-//        expect(scope.settings.enableFriends).toEqual(true);
-//    });
-//    
-//    //LOGIN ADMINISTRATOR
-//    it('should ask for the admin password if the user try to enter to enrol', function () {
-//        expect(scope.settings.enableFriends).toEqual(true);
-//    });
-//});
+
+describe('EnrollCntrl', function(){
+var $httpBackend, createController, scope, _EnrollService;
+
+beforeEach(inject(function ( $httpBackend, $injector, $rootScope, $controller) {
+    
+    $httpBackend = $injector.get('$httpBackend');
+    jasmine.getJSONFixtures().fixturesPath = 'base/test/mock';
+
+
+
+    scope = $rootScope.$new();
+    $controller('EnrollCtrl', { '$scope': scope });
+
+}));
+
+
+it('should enroll a person', function() {
+    $httpBackend.whenPOST('/empleados').respond(function (method, url, data) {
+		return [200, {}];
+	});
+    $httpBackend.flush();
+    expect(scope.EnrollSucces).toBe(true);
+});
+it('should Show error', function() {
+    $httpBackend.whenPOST('/empleados').respond(function (method, url, data) {
+		return [500, getJSONFixture('error.json'), {}];
+	});
+    EnrollCtrl.newUser();
+    $httpBackend.flush();
+    expect(scope.EnrollSucces).toBe(false);
+});
+
+});
