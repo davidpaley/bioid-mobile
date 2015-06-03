@@ -18,8 +18,12 @@ module.exports = function (config) {
       '../www/lib/angular-mocks/angular-mocks.js',
       '../www/js/*.js',
       '../www/js/*/*.js',
-      '../www/js/*/test.js'
+      '../www/js/*/test.js',
+      'vendor/jasmine-jquery.js',
+      {pattern: '/tests/mock/*.json', watched: true, served: true, included: false}
     ],
+    
+    
 
     // Use the PhantomJS browser instead of Chrome
     browsers: ['PhantomJS'],
