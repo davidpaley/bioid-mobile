@@ -25,19 +25,20 @@ angular.module('bioid-mobile.login.service', [])
 }])
 
 
-.factory('AuthService', function (BaseUrl, $http, $q) {
+.factory('AuthService', function (ApiEndpoint, $http, $q) {
     var isLoggedIn = localStorage["token"] != null;
 
     return {
         isLoggedIn : isLoggedIn,
         
         login: function (user) {
+
             var deferred = $q.defer();
             user.grant_type = "password";
-            var header = { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" }
+            var header = { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" };
             var encodedData = "username=" + user.username + "&password=" + user.password + "&grant_type=" + user.grant_type;
             $http({
-                url: BaseUrl+'/token',
+                url: ApiEndpoint.url,
                 method: 'POST',
                 headers: header,
                 data: encodedData,

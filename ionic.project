@@ -1,4 +1,10 @@
 {
   "name": "bioid-mobile",
-  "app_id": "b4b5a877"
+  "app_id": "b4b5a877",
+  "proxies": [
+    {
+      "path": "/token",
+      "proxyUrl": "https://apibioid.azurewebsites.net/token"
+    }
+  ]
 }
