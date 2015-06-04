@@ -21,7 +21,7 @@ var karma = require('karma').server;
 */
 gulp.task('test', function(done) {
     karma.start({
-        configFile: __dirname + '/tests/my.conf.js',
+        configFile: __dirname + '/test/my.conf.js',
         singleRun: true
     }, function() {
         done();
