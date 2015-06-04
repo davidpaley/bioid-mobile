@@ -1,33 +1,40 @@
 /// <reference path="../../typings/jasmine/jasmine.d.ts"/>
+describe('EnrollCntrl', function () {
+    var $httpBackend, scope, createController;
 
-describe('Controllers', function () {
-    var scope;
+    beforeEach(module('bioid-mobile.enroll.controller'));
 
-    // load the controller's module
-    beforeEach(module('bioid-mobile.controllers'));
+    beforeEach(inject(function ($injector, $rootScope, $controller) {
 
-    beforeEach(inject(function ($rootScope, $controller) {
+        $httpBackend = $injector.get('$httpBackend');
+        //jasmine.getJSONFixtures().fixturesPath = 'base/test/mock';
+
         scope = $rootScope.$new();
-        $controller('AccountCtrl', { $scope: scope });
+        //    $controller('EnrollCtrl', {'$scope': scope});
+        createController = function () {
+            return $controller('EnrollCtrl', {
+                '$scope': scope
+            });
+        };
+
     }));
 
-    // LOGIN
-    it('should log the user successfully', function () {
-        $controller('AccountCtrl', { $scope: scope });
-        $('AccountCtrl', { $scope: scope });
-        expect(scope.settings.enableFriends).toEqual(true);
+    it('should enroll a user', function () {
+        var controller = createController();
+        $httpBackend.whenPOST('/empleados').respond(function (method, url, data) {
+            return [200, {}];
+        });
+        //$httpBackend.flush();
+        expect(scope.EnrollSucces).toBe(true);
+    });
+    it('should Show error', function () {
+        var controller = createController();
+        $httpBackend.whenPOST('/empleados').respond(function (method, url, data) {
+            return [500, {}];
+        });
+        scope.enrollUser();
+        //$httpBackend.flush();
+        expect(scope.EnrollSucces).toBe(false);
     });
 
-    it('should show the user login if the user is not logged in', function () {
-        expect(scope.settings.enableFriends).toEqual(true);
-    });
-
-    it('should show the verify screen if the user is logged in', function () {
-        expect(scope.settings.enableFriends).toEqual(true);
-    });
-    
-    //LOGIN ADMINISTRATOR
-    it('should ask for the admin password if the user try to enter to enrol', function () {
-        expect(scope.settings.enableFriends).toEqual(true);
-    });
 });
