@@ -1,6 +1,6 @@
 angular.module('bioid-mobile.api.service', [])
 
-.factory('EnrollService', function (BaseUrl, $http, $q) {
+.factory('EnrollService', function (ApiEndpoint, $http, $q) {
     var isLoggedIn = localStorage["token"] != null;
 
     return {
@@ -12,7 +12,7 @@ angular.module('bioid-mobile.api.service', [])
             var header = { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" }
             var encodedData = "username=" + user.username + "&password=" + user.password + "&grant_type=" + user.grant_type;
             $http({
-                url: BaseUrl+'/token',
+                url: ApiEndpoint.url+'/token',
                 method: 'POST',
                 headers: header,
                 data: encodedData,
