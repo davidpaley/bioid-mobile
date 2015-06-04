@@ -1,0 +1,9 @@
+{
+ "odata.error":{
+   "code":"","message":{
+     "lang":"en-US","value":"The request is invalid."
+   },"innererror":{
+     "message":"usuario : An error has occurred.\r\n","type":"","stacktrace":""
+   }
+ }
+}
