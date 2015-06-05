@@ -2,7 +2,7 @@ angular.module('bioid-mobile.enroll.controller', [])
   .controller('EnrollCtrl', function ($scope) {
     this.data = {};
     this.data.emails = [''];
-    this.EnrollSucces=false;
+    $scope.EnrollSucces=false;
     $scope.enrollUser=function (){
       
     }

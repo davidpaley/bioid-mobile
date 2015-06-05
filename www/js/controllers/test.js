@@ -1,5 +1,5 @@
 /// <reference path="../../typings/jasmine/jasmine.d.ts"/>
-describe('EnrollCntrl', function () {
+describe('EnrollCntrlTest', function () {
     var $httpBackend, scope, createController;
 
     beforeEach(module('bioid-mobile.enroll.controller'));
@@ -11,16 +11,20 @@ describe('EnrollCntrl', function () {
 
         scope = $rootScope.$new();
         //    $controller('EnrollCtrl', {'$scope': scope});
-        createController = function () {
-            return $controller('EnrollCtrl', {
-                '$scope': scope
-            });
-        };
+//        createController = function () {
+//            return $controller('EnrollCtrl', {
+//                '$scope': scope
+//            });
+//        };
+        $controller('EnrollCtrl', {
+      $scope: scope
+    });
+
 
     }));
 
     it('should enroll a user', function () {
-        var controller = createController();
+        //var controller = createController();
         $httpBackend.whenPOST('/empleados').respond(function (method, url, data) {
             return [200, {}];
         });
@@ -28,7 +32,7 @@ describe('EnrollCntrl', function () {
         expect(scope.EnrollSucces).toBe(true);
     });
     it('should Show error', function () {
-        var controller = createController();
+        //var controller = createController();
         $httpBackend.whenPOST('/empleados').respond(function (method, url, data) {
             return [500, {}];
         });
