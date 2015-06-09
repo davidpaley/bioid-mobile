@@ -1,50 +1,55 @@
 angular.module('bioid-mobile.enroll.controller', [])
-  .controller('EnrollCtrl', function ($scope,$mdDialog,$ionicPopup) {
+  .controller('EnrollCtrl', function ($scope,$mdDialog,$ionicPopup,$ionicLoading,EnrollService) {
     this.data = {};
     this.data.emails = [''];
     $scope.EnrollSucces=false;
-    $scope.enrollUser=function (){
-      
-    }
+    //$scope.projectForm.$setPristine();  //no me reconoce projectForm
+    $scope.show = function() {
+            $ionicLoading.show({
+              template: 'Enviando Datos...', duration: 5000
+            });
+          };
     $scope.newUser = function(form, ev) {
       
-      var myPopup = $ionicPopup.show({
-     template: '<i class="icon ion-android-hand positive"></i>',
-     title: 'Ingrese su huella',
-     scope: $scope,
-     buttons: [{ text: 'Cancelar', type:'button-positive' },
-       // {
-        //  text: '<b>Cancelar</b>',
-        //  type: 'button-positive',
-        //  onTap: function(e) {
-        //    if (!$scope.data.wifi) {
-        //      //don't allow the user to close unless he enters wifi password
-        //      e.preventDefault();
-        //    } else {
-        //      return $scope.data.wifi;
-        //    }
-        //  }
-       // },
-     ]
-   });
-  //  margin: 0 auto;
-  // overflow: hidden;
-      
-      // $mdDialog.show({
-      //     controller: ErrorController,
-      //     templateUrl: '/templates/verify.dialog.html',
-      //     clickOutsideToClose: false
-      //   });
-    }    
-    function ErrorController($scope, $mdDialog) {
-      $scope.content = 'Ingrese su huella';
-      $scope.progress = 30;
-
-      $scope.hide = function() {
+      var confirmPopup = $ionicPopup.confirm({
+       title: 'Ingrese su huella',
+       template: '<i class="icon ion-android-hand positive"></i>',
+      });
+      confirmPopup.then(function(res) {
+       
+       if(res) {
+         $scope.show();
+         EnrollService.post('/empleados',form);
          
-        $mdDialog.hide();
-      };
-    }
+         form.Name="";
+         form.LastName="";
+         form.Identification="";
+         form.BirthDay="";
+         form.$setPristine();
+       } else {
+         console.log('You are not sure');
+         
+       }
+     });
+     //tambien se puede usar un modal
+      // var myPopup = $ionicPopup.show({
+      //   template: '<i class="icon ion-android-hand positive"></i>',
+      //   title: 'Ingrese su huella',  
+      //   scope: $scope,
+      //   buttons: [{ text: 'Cancelar', type:'button-positive' },{ text: 'Ok', type:'button-positive' } //poniendo en un boton OnTap
+      //   ]
+      //  });
+      //  myPopup.then(function(res) {
+      //     if (res){
+      //       console.log('Putin!', res);
+      //     }else{
+      //       console.log('No Putin!', res);
+      //     }
+      //     
+      //     
+      //  });
+     };    
+    
     
     
     
