@@ -2,10 +2,10 @@
   <ion-content>
     
     <md-content class="md-padding">
-    <form name="projectForm" ng-submit="newUser(enrolForm,$event)">
+    <form name="projectForm" ng-submit="newUser(enrolForm,$event,projectForm)">
       <md-input-container>
         <label>Nombre</label>
-        <input md-maxlength="15" required name="name" ng-model="enrolForm.Name">
+        <input md-maxlength="15" required name="Name" ng-model="enrolForm.Name">
         <div ng-messages="enrolForm.Name.$error">
           <div ng-message="required">Debes ingresar un nombre.</div>
           <div ng-message="md-maxlength">El nombre debe tener menos de 15 caracteres</div>
@@ -35,6 +35,20 @@
         </md-input-container>
       <md-button class="md-raised md-primary">Enrolar</md-button>
     </form>
+    <script id="templates/modal.html" type="text/ng-template">
+      <ion-modal-view style="width:30%;height:30%">
+        <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title">Ingrese su huella</h1>
+          <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list">
+            <i class="icon ion-android-hand positive" style="display: block;margin:0 auto; "></i>
+            <button class="button button-full button-positive" ng-click="hideModal()">Cancel</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
   </md-content>
   </ion-content>
 </ion-view>
