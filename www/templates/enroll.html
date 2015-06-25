@@ -2,39 +2,53 @@
   <ion-content>
     
     <md-content class="md-padding">
-    <form name="projectForm" ng-submit="newUser(enrolForm,$event)">
+    <form name="projectForm" ng-submit="newUser(enrolForm,$event,projectForm)">
       <md-input-container>
         <label>Nombre</label>
-        <input md-maxlength="15" required name="nombre" ng-model="enrolForm.Nombre">
-        <div ng-messages="enrolForm.Nombre.$error">
+        <input md-maxlength="15" required name="Name" ng-model="enrolForm.Name">
+        <div ng-messages="enrolForm.Name.$error">
           <div ng-message="required">Debes ingresar un nombre.</div>
           <div ng-message="md-maxlength">El nombre debe tener menos de 15 caracteres</div>
         </div>
       </md-input-container>
       <md-input-container>
         <label>Apellido</label>
-        <input required name="apellido" ng-model="enrolForm.Apellido">
-        <div ng-messages="enrolForm.Apellido.$error">
+        <input required name="LastName" ng-model="enrolForm.LastName">
+        <div ng-messages="enrolForm.LastName.$error">
           <div ng-message="required">Debes ingresar un apellido.</div>
         </div>
       </md-input-container>
       <md-input-container>
         <label>Cédula de identidad</label>
-        <input required type="number" step="any" name="cedula" ng-model="enrolForm.Cedula">
-        <div ng-messages="enrolForm.Cedula.$error">
+        <input required type="number" step="any" name="Identification" ng-model="enrolForm.Identification">
+        <div ng-messages="enrolForm.Identification.$error">
           <div ng-message="required">Debes ingresar una cédula</div>
           </div>
       </md-input-container>
        
       <md-input-container flex>
           <label>Fecha de Nacimiento</label>
-          <input type="date" required ng-model="enrolForm.FechaNacimiento">
-        <div ng-messages="enrolForm.FechaNacimiento.$error">
+          <input type="date" required ng-model="enrolForm.BirthDay">
+        <div ng-messages="enrolForm.BirthDay.$error">
           <div ng-message="required">Debes ingresar una fecha</div>
           </div>
         </md-input-container>
       <md-button class="md-raised md-primary">Enrolar</md-button>
     </form>
+    <script id="templates/modal.html" type="text/ng-template">
+      <ion-modal-view style="width:30%;height:30%">
+        <ion-header-bar class="bar bar-header bar-positive">
+          <h1 class="title">Ingrese su huella</h1>
+          <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list">
+            <i class="icon ion-android-hand positive" style="display: block;margin:0 auto; "></i>
+            <button class="button button-full button-positive" ng-click="hideModal()">Cancel</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
   </md-content>
   </ion-content>
 </ion-view>
